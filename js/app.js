@@ -35,7 +35,7 @@ const displayCountry = (data) => {
             div.innerHTML = `
             <div class="card-body">
                 <h5 class="card-title">${country.Country}</h5>
-                <p>তারিখ : ${country.Date}</p>
+                <p>তারিখ : ${new Date(country.Date).toLocaleDateString('bn-BD')}</p>
                         <p>মোট আক্রান্ত : ${country.TotalConfirmed}</p>
                         <p>মোট মৃত্যু : ${country.TotalDeaths}</p>            
                         <p>নতুন আক্রান্ত : ${country.NewConfirmed}</p>
@@ -51,7 +51,7 @@ const displayCountry = (data) => {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">${country.Country}</h5>
-                        <p>তারিখ <br> ${country.Date}</p>
+                        <p>তারিখ <br> ${new Date(country.Date).toLocaleDateString('bn-BD')}</p>
                         <p>মোট আক্রান্ত <br> ${country.TotalConfirmed}</p>
                         <p>মোট মৃত্যু <br> ${country.TotalDeaths}</p>            
                         <p>নতুন আক্রান্ত <br> ${country.NewConfirmed}</p>
