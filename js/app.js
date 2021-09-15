@@ -1,3 +1,12 @@
+const inputText = document.getElementById('input');
+const inputButton = document.getElementById('button')
+console.log(inputText.value)
+inputText.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        inputButton.click();
+    }
+})
+
 const loadData = () => {
     const url = `https://api.covid19api.com/summary`;
     fetch(url)
@@ -6,7 +15,6 @@ const loadData = () => {
 }
 
 loadData();
-
 const displayAll = (data) => {
     // console.log(data);
     const worldDeatils = document.getElementById('world-details');
@@ -23,18 +31,20 @@ const loadDataCountries = () => {
         .then(res => res.json())
         .then(data => displayCountry(data.Countries));
 }
-
+loadDataCountries();
 const displayCountry = (data) => {
-    let inputField = document.getElementById('input').value;
+    const inputField = inputText.value;
+    inputText.value = "";
     data.forEach(country => {
         const countryDetails = document.getElementById('country-details');
-
         if (inputField.toLowerCase() === country.Slug) {
             const singleCountry = document.getElementById('a-country');
+            singleCountry.textContent = "";
+            console.log(country);
             const div = document.createElement('div');
             div.innerHTML = `
-            <div class="card-body">
-                <h5 class="card-title">${country.Country}</h5>
+            <div class="card-body single-card">
+                <h5 class="card-title">${country.Country.toUpperCase()}</h5>
                 <p>তারিখ : ${new Date(country.Date).toLocaleDateString('bn-BD')}</p>
                         <p>মোট আক্রান্ত : ${country.TotalConfirmed}</p>
                         <p>মোট মৃত্যু : ${country.TotalDeaths}</p>            
@@ -44,13 +54,14 @@ const displayCountry = (data) => {
             `;
             singleCountry.appendChild(div);
         }
+        // showing all country 
         const div = document.createElement('div');
         // console.log(country)
         div.innerHTML = `
         <div class="col">
-                <div class="card">
+                <div class="card full-card">
                     <div class="card-body">
-                        <h5 class="card-title">${country.Country}</h5>
+                        <h5 class="card-title">${country.Country.toUpperCase()}</h5>
                         <p>তারিখ <br> ${new Date(country.Date).toLocaleDateString('bn-BD')}</p>
                         <p>মোট আক্রান্ত <br> ${country.TotalConfirmed}</p>
                         <p>মোট মৃত্যু <br> ${country.TotalDeaths}</p>            
@@ -62,6 +73,5 @@ const displayCountry = (data) => {
         `
         countryDetails.appendChild(div);
     })
-}
 
-loadDataCountries();
+}
