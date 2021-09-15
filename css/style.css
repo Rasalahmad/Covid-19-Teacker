@@ -2,13 +2,27 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 body {
-    background-color: aliceblue;
     font-family: 'Roboto', sans-serif;
     background-image: url('gradient-2.png');
 }
 
+.main-div {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.modal-header {
+    display: block !important;
+    text-align: center;
+}
+
+.modal-content {
+    background-color: transparent;
+    opacity: 1;
+}
+
 .corona {
-    font-size: 60px;
+    font-size: 80px;
     font-weight: bold;
     color: rgb(169, 169, 202);
 }

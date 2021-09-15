@@ -1,14 +1,16 @@
 const inputText = document.getElementById('input');
 const inputButton = document.getElementById('button')
-console.log(inputText.value)
+const singleCountry = document.getElementById('country');
+const countryDetails = document.getElementById('country-details')
+const url = `https://api.covid19api.com/summary`;
+const worldDeatils = document.getElementById('world-details');
 inputText.addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        inputButton.click();
-    }
-})
-
+        if (event.key === 'Enter') {
+            inputButton.click();
+        }
+    })
+    // world statistic 
 const loadData = () => {
-    const url = `https://api.covid19api.com/summary`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayAll(data));
@@ -16,8 +18,6 @@ const loadData = () => {
 
 loadData();
 const displayAll = (data) => {
-    // console.log(data);
-    const worldDeatils = document.getElementById('world-details');
     worldDeatils.innerHTML = `
     <p>মোট আক্রান্ত <br> <br> ${data.Global.TotalConfirmed}</p>
     <p>মোট মৃত্যু <br> <br> ${data.Global.TotalDeaths}</p>
@@ -25,26 +25,31 @@ const displayAll = (data) => {
     `
 };
 
+// showing single country in ui 
 const loadDataCountries = () => {
-    const url = `https://api.covid19api.com/summary`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayCountry(data.Countries));
 }
-loadDataCountries();
+
 const displayCountry = (data) => {
     const inputField = inputText.value;
     inputText.value = "";
     data.forEach(country => {
-        const countryDetails = document.getElementById('country-details');
-        if (inputField.toLowerCase() === country.Slug) {
-            const singleCountry = document.getElementById('a-country');
+        if (inputField === '') {
+            document.getElementById('exampleModalLabel').innerHTML =
+                `<h2 class ='text-white'>Please Enter a Country Name</h2>`;
+            singleCountry.innerHTML = `
+             <p class="text-white">Hey man!! put valid data</p>
+             `
+            return;
+        } else if (inputField.toLowerCase() === country.Slug) {
             singleCountry.textContent = "";
-            console.log(country);
-            const div = document.createElement('div');
-            div.innerHTML = `
-            <div class="card-body single-card">
-                <h5 class="card-title">${country.Country.toUpperCase()}</h5>
+            document.getElementById('exampleModalLabel').innerHTML =
+                `<h2 class ='text-white'>${country.Country.toUpperCase()}</h2>`
+                // console.log(country);
+            singleCountry.innerHTML = `
+            <div class = 'text-white'>
                 <p>তারিখ : ${new Date(country.Date).toLocaleDateString('bn-BD')}</p>
                         <p>মোট আক্রান্ত : ${country.TotalConfirmed}</p>
                         <p>মোট মৃত্যু : ${country.TotalDeaths}</p>            
@@ -52,26 +57,39 @@ const displayCountry = (data) => {
                         <p>নতুন মৃত্যু : ${country.NewDeaths}</p>
             </div>
             `;
-            singleCountry.appendChild(div);
         }
-        // showing all country 
+    });
+
+}
+
+
+// showing all country in ui 
+const allCountry = () => {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayAllCountry(data.Countries));
+}
+
+const displayAllCountry = (data) => {
+
+    // spinner
+    data.forEach(countries => {
         const div = document.createElement('div');
-        // console.log(country)
         div.innerHTML = `
         <div class="col">
                 <div class="card full-card">
                     <div class="card-body">
-                        <h5 class="card-title">${country.Country.toUpperCase()}</h5>
-                        <p>তারিখ <br> ${new Date(country.Date).toLocaleDateString('bn-BD')}</p>
-                        <p>মোট আক্রান্ত <br> ${country.TotalConfirmed}</p>
-                        <p>মোট মৃত্যু <br> ${country.TotalDeaths}</p>            
-                        <p>নতুন আক্রান্ত <br> ${country.NewConfirmed}</p>
-                        <p>নতুন মৃত্যু <br> ${country.NewDeaths}</p>
+                        <h5 class="card-title">${countries.Country.toUpperCase()}</h5>
+                        <p>তারিখ <br> ${new Date(countries.Date).toLocaleDateString('bn-BD')}</p>
+                        <p>মোট আক্রান্ত <br> ${countries.TotalConfirmed}</p>
+                        <p>মোট মৃত্যু <br> ${countries.TotalDeaths}</p>            
+                        <p>নতুন আক্রান্ত <br> ${countries.NewConfirmed}</p>
+                        <p>নতুন মৃত্যু <br> ${countries.NewDeaths}</p>
                     </div>
                 </div>
             </div>
-        `
+        `;
         countryDetails.appendChild(div);
     })
-
 }
+allCountry();

@@ -45,7 +45,7 @@
         </nav>
     </header>
     <section>
-        <div class="row my-5 main-div">
+        <div class="row main-div">
             <div class="col-lg-6 col-sm-12 p-3">
                 <h1 class="text-danger"><span class="corona">CORONA</span>VIRUS</h1>
                 <p>On 31 December 2019, WHO was informed of cases of pneumonia of unknown cause in Wuhan City, China. A novel coronavirus was identified as the cause by Chinese authorities on 7 January 2020 and was temporarily named “2019-nCoV”</p>
@@ -70,21 +70,32 @@
         </div>
     </section>
     <section>
-        <div class="input-group my-5 w-75 mx-auto">
+        <div class="input-group my-5 w-50 mx-auto">
             <input id="input" type="text" class="form-control" placeholder="Search" aria-label="search" aria-describedby="button-addon2">
-            <button class="btn btn-outline-primary" type="button" id="button" onclick="loadDataCountries()">Search</button>
+            <button class="btn btn-outline-primary" type="button" id="button" onclick="loadDataCountries()" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
         </div>
     </section>
     <!-- single country  -->
-    <section>
-        <div id="a-country">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                </div>
+                <div class="modal-body text-center" id="country">
 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-    </section>
-    <!-- all country details  -->
+    </div>
+    <!-- showing all countries  -->
+    <!-- spinner  -->
     <section>
         <div class="row row-cols-1 row-cols-md-3 g-4" id="country-details">
-
         </div>
     </section>
     <footer>
