@@ -4,6 +4,25 @@ const singleCountry = document.getElementById('country');
 const countryDetails = document.getElementById('country-details')
 const url = `https://api.covid19api.com/summary`;
 const worldDeatils = document.getElementById('world-details');
+
+// suggestion country
+const sugCountry = document.getElementById('sug-country')
+
+const suggestedCountry = () => {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displaySugCountry(data.Countries));
+}
+const displaySugCountry = (data) => {
+    data.forEach(country => {
+        console.log(country);
+        const option = document.createElement('option');
+        option.innerText = country.Country;
+        sugCountry.appendChild(option);
+    })
+}
+suggestedCountry();
+
 inputText.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             inputButton.click();
@@ -71,7 +90,6 @@ const allCountry = () => {
 }
 
 const displayAllCountry = (data) => {
-
     // spinner
     data.forEach(countries => {
         const div = document.createElement('div');

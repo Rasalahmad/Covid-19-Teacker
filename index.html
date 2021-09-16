@@ -44,10 +44,24 @@
             </div>
         </nav>
     </header>
+
+
+
+
+
     <section>
         <div class="row main-div">
             <div class="col-lg-6 col-sm-12 p-3">
-                <h1 class="text-danger"><span class="corona">CORONA</span>VIRUS</h1>
+                <!-- <h1 class="text-danger"><span class="corona">CORONA</span> <span>COVID-19</span> <span>VIRUS</span> </h1> -->
+                <div class="d-flex align-items-center">
+                    <h1 class="corona">CORONA</h1>
+                    <div class="covid">
+                        <p class="">COVID-19</p>
+                        <p class="text-info mb-1">VIRUS</p>
+                    </div>
+
+                </div>
+
                 <p>On 31 December 2019, WHO was informed of cases of pneumonia of unknown cause in Wuhan City, China. A novel coronavirus was identified as the cause by Chinese authorities on 7 January 2020 and was temporarily named “2019-nCoV”</p>
                 <a href="#input">
                     <button class="nav-link rounded-pill bg-primary text-white fw-bold px-3 me-3 d-inline">Search Country</button>
@@ -71,7 +85,10 @@
     </section>
     <section>
         <div class="input-group my-5 w-50 mx-auto">
-            <input id="input" type="text" class="form-control" placeholder="Search" aria-label="search" aria-describedby="button-addon2">
+            <input id="input" type="text" class="form-control" placeholder="Search" aria-label="search" aria-describedby="button-addon2" list="sug-country">
+            <datalist id="sug-country">
+
+            </datalist>
             <button class="btn btn-outline-primary" type="button" id="button" onclick="loadDataCountries()" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
         </div>
     </section>

@@ -4,6 +4,7 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url('gradient-2.png');
+    /* position: absolute; */
 }
 
 .main-div {
@@ -27,22 +28,47 @@ body {
     color: rgb(169, 169, 202);
 }
 
-.single-card {
+.covid p {
+    font-size: 33px;
+    margin-bottom: 0;
+    line-height: 1.2;
+    font-weight: bold;
+    color: red;
+}
+
+
+/* .single-card {
     box-shadow: 10px 5px 10px;
     border-radius: 35px;
     text-align: center;
     margin-bottom: 20px;
-}
+} */
 
 .full-card {
-    box-shadow: 5px 5px 5px;
+    /* box-shadow: 5px 5px 5px; */
     border-radius: 35px;
     text-align: center;
     background: transparent;
+    border: 2px solid #fff;
     transition: 2s;
 }
 
 .full-card:hover {
     background-color: aliceblue;
     transform: rotateY(360deg);
+}
+
+@media screen and (max-width:420px) {
+    .corona {
+        font-size: 40px;
+        font-weight: bold;
+        color: rgb(169, 169, 202);
+    }
+    .covid p {
+        font-size: 16px;
+        margin-bottom: 0;
+        line-height: 1;
+        font-weight: bold;
+        color: red;
+    }
 }
