@@ -4,7 +4,8 @@
 body {
     font-family: 'Roboto', sans-serif;
     background-image: url('gradient-2.png');
-    /* position: absolute; */
+    padding-right: 0 !important;
+    overflow: auto !important;
 }
 
 .main-div {

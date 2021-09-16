@@ -66,9 +66,7 @@
                 <a href="#input">
                     <button class="nav-link rounded-pill bg-primary text-white fw-bold px-3 me-3 d-inline">Search Country</button>
                 </a>
-                <a href="https://www.linkedin.com/in/rasel-ahmad-bb4325189/" target="_blank">
-                    <button class="border-0 text-primary">About Me</button>
-                </a>
+                <a href="https://www.linkedin.com/in/rasel-ahmad-bb4325189/" target="_blank" class="border-0 text-primary text-decoration-none p-3">About Me</a>
                 <!-- world total details  -->
                 <section>
                     <p class="text-center mt-5">
@@ -85,11 +83,11 @@
     </section>
     <section>
         <div class="input-group my-5 w-50 mx-auto">
-            <input id="input" type="text" class="form-control" placeholder="Search" aria-label="search" aria-describedby="button-addon2" list="sug-country">
+            <input id="input" type="text" class="form-control rounded-pill" placeholder="Search" aria-label="search" aria-describedby="button-addon2" list="sug-country">
             <datalist id="sug-country">
 
             </datalist>
-            <button class="btn btn-outline-primary" type="button" id="button" onclick="loadDataCountries()" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
+            <button class="btn btn-outline-primary rounded-pill" type="button" id="button" onclick="loadDataCountries()" data-bs-toggle="modal" data-bs-target="#exampleModal">Search</button>
         </div>
     </section>
     <!-- single country  -->

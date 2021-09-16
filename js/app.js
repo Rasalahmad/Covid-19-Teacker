@@ -4,6 +4,8 @@ const singleCountry = document.getElementById('country');
 const countryDetails = document.getElementById('country-details')
 const url = `https://api.covid19api.com/summary`;
 const worldDeatils = document.getElementById('world-details');
+const modalTitle = document.getElementById('exampleModalLabel')
+
 
 // suggestion country
 const sugCountry = document.getElementById('sug-country')
@@ -15,14 +17,14 @@ const suggestedCountry = () => {
 }
 const displaySugCountry = (data) => {
     data.forEach(country => {
-        console.log(country);
+        // console.log(country);
         const option = document.createElement('option');
         option.innerText = country.Country;
         sugCountry.appendChild(option);
     })
 }
 suggestedCountry();
-
+// enter key handleing
 inputText.addEventListener('keypress', function(event) {
         if (event.key === 'Enter') {
             inputButton.click();
@@ -63,8 +65,8 @@ const displayCountry = (data) => {
              `
             return;
         } else if (inputField.toLowerCase() === country.Slug) {
-            singleCountry.textContent = "";
-            document.getElementById('exampleModalLabel').innerHTML =
+            // singleCountry.innerHTML = "";
+            modalTitle.innerHTML =
                 `<h2 class ='text-white'>${country.Country.toUpperCase()}</h2>`
                 // console.log(country);
             singleCountry.innerHTML = `
@@ -74,7 +76,7 @@ const displayCountry = (data) => {
                         <p>মোট মৃত্যু : ${country.TotalDeaths}</p>            
                         <p>নতুন আক্রান্ত : ${country.NewConfirmed}</p>
                         <p>নতুন মৃত্যু : ${country.NewDeaths}</p>
-            </div>
+                     </div>
             `;
         }
     });
