@@ -93,7 +93,7 @@ const allCountry = () => {
 
 const displayAllCountry = (data) => {
     // spinner
-    data.forEach(countries => {
+    data.slice(0, 20).forEach(countries => {
         const div = document.createElement('div');
         div.innerHTML = `
         <div class="col">
@@ -112,4 +112,33 @@ const displayAllCountry = (data) => {
         countryDetails.appendChild(div);
     })
 }
+
+const seeMore = () => {
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayMoreCountry(data.Countries));
+}
+
+const displayMoreCountry = (data) => {
+        // spinner
+        data.slice(21, data.length).forEach(countries => {
+            const div = document.createElement('div');
+            div.innerHTML = `
+        <div class="col">
+                <div class="card full-card">
+                    <div class="card-body">
+                        <h5 class="card-title">${countries.Country.toUpperCase()}</h5>
+                        <p>তারিখ <br> ${new Date(countries.Date).toLocaleDateString('bn-BD')}</p>
+                        <p>মোট আক্রান্ত <br> ${countries.TotalConfirmed}</p>
+                        <p>মোট মৃত্যু <br> ${countries.TotalDeaths}</p>            
+                        <p>নতুন আক্রান্ত <br> ${countries.NewConfirmed}</p>
+                        <p>নতুন মৃত্যু <br> ${countries.NewDeaths}</p>
+                    </div>
+                </div>
+            </div>
+        `;
+            countryDetails.appendChild(div);
+        })
+    }
+    // document.getElementById('see-more').onclick = '#';
 allCountry();
